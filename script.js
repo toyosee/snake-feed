@@ -14,6 +14,32 @@ let score = 0;
 let speed;
 let gameInterval;
 
+
+// Detect swipe gestures for mobile users
+let touchStartX = 0;
+let touchStartY = 0;
+
+canvas.addEventListener("touchstart", (event) => {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+});
+
+canvas.addEventListener("touchmove", (event) => {
+    let touchEndX = event.touches[0].clientX;
+    let touchEndY = event.touches[0].clientY;
+
+    let diffX = touchEndX - touchStartX;
+    let diffY = touchEndY - touchStartY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0 && direction !== "LEFT") direction = "RIGHT";
+        else if (diffX < 0 && direction !== "RIGHT") direction = "LEFT";
+    } else {
+        if (diffY > 0 && direction !== "UP") direction = "DOWN";
+        else if (diffY < 0 && direction !== "DOWN") direction = "UP";
+    }
+});
+
 // Load sounds
 const beep = new Audio("https://www.myinstants.com/media/sounds/game-over.mp3");
 const gulp = new Audio("https://www.myinstants.com/media/sounds/pop-sound-effect.mp3");
