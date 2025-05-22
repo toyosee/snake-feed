@@ -24,9 +24,9 @@ canvas.addEventListener("touchstart", (event) => {
     touchStartY = event.touches[0].clientY;
 });
 
-document.body.addEventListener("touchmove", (event) => {
-    event.preventDefault(); // Stops accidental page scrolling
-}, { passive: false });
+// document.body.addEventListener("touchmove", (event) => {
+//     event.preventDefault(); // Stops accidental page scrolling
+// }, { passive: false });
 
 canvas.addEventListener("touchmove", (event) => {
     event.preventDefault(); // Prevent screen movement during swipes
