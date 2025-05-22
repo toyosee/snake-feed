@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="homeScreen">
+        <h1>Welcome Gamer!</h1>
+        <p>Select difficulty level:</p>
+        <select id="levelSelect">
+            <option value="5">Level 1 (Slow)</option>
+            <option value="4">Level 2</option>
+            <option value="3">Level 3</option>
+            <option value="2">Level 4</option>
+            <option value="1">Level 5 (Fast)</option>
+        </select>
+        <button class="btn" onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="gameContainer" style="display: none;">
+        <div>
+            <p id="score">Score: 0</p>
+            <button id="pauseBtn" class="btn" onclick="togglePause()">Pause</button>
+            <button class="btn" onclick="goHome()">Quit</button>
+        </div>
+        <!-- FIX: Pause button moved outside Game Over -->
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+        <div id="gameOverScreen" style="display: none;"> <!-- FIX: Ensure Game Over screen is hidden until needed -->
+            <h2>Game Over!</h2>
+            <button class="btn" onclick="resetGame()">Replay</button>
+            <button class="btn" onclick="goHome()">Quit</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
