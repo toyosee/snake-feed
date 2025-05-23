@@ -47,8 +47,9 @@ canvas.addEventListener("touchmove", (event) => {
 });
 
 // Load sounds
-const beep = new Audio("https://www.myinstants.com/media/sounds/game-over.mp3");
+const beep = new Audio("https://www.myinstants.com/media/sounds/dun-dun-dun-sound-effect-brass_8nFBccR.mp3");
 const gulp = new Audio("https://www.myinstants.com/media/sounds/pop-sound-effect.mp3");
+const dorime = new Audio("https://www.myinstants.com/media/sounds/dorime_WdWNsGk.mp3")
 
 // Start Game
 function startGame() {
@@ -62,6 +63,7 @@ function startGame() {
     scoreDisplay.textContent = `Score: 0`;
     clearInterval(gameInterval);
     gameInterval = setInterval(updateGame, speed);
+    
 }
 
 // Change direction
@@ -102,6 +104,12 @@ function updateGame() {
         food = { x: Math.floor(Math.random() * 20) * box, y: Math.floor(Math.random() * 20) * box };
         score += 10;
         scoreDisplay.textContent = `Score: ${score}`;
+
+            // Play Dorime every time score is a multiple of 50
+        if (score % 50 === 0) {
+            dorime.play();
+        }
+
     } else {
         snake.pop();
     }
@@ -194,6 +202,10 @@ function resetGame() {
     scoreDisplay.textContent = `Score: 0`
     gameOverScreen.style.display = "none"
     gameInterval = setInterval(updateGame, speed)
+        // Stop Dorime sound when quitting
+    dorime.pause();
+    dorime.currentTime = 0; 
+    
 }
 
 // Quit to Home
@@ -212,4 +224,9 @@ function goHome() {
     // Clear game interval to stop execution
     clearInterval(gameInterval)
     isPaused = false // Ensure pause state resets
+
+        // Stop Dorime sound when quitting
+    dorime.pause();
+    dorime.currentTime = 0; 
+    
 }
